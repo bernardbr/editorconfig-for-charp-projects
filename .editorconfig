@@ -1,0 +1,383 @@
+# Indicates that this is the root .editorconfig file.
+root = true
+
+########################################################################
+# Global Settings for All Files
+########################################################################
+
+[*]
+indent_style = space
+# Automatically removes trailing whitespace at the end of each line.
+trim_trailing_whitespace = true
+# Ensures that every file ends with a new line.
+insert_final_newline = true
+# Sets the end-of-line character to CRLF (standard on Windows).
+end_of_line = crlf
+# Establishes a maximum line length of 120 characters.
+max_line_length = 120
+
+########################################################################
+# Settings for Code Files (C#, CSX, VB, VBX)
+########################################################################
+
+[*.{cs,csx,vb,vbx}]
+# Sets the indentation size to 4 spaces.
+indent_size = 4
+# Uses UTF-8 encoding.
+charset = utf-8
+
+########################################################################
+# Settings for XML Project Files
+########################################################################
+
+[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+# Sets the indentation size to 2 spaces for project files.
+indent_size = 2
+
+########################################################################
+# Settings for XML Configuration Files
+########################################################################
+
+[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+# Sets the indentation size to 2 spaces for configuration files.
+indent_size = 2
+
+########################################################################
+# Settings for JSON Files
+########################################################################
+
+[*.json]
+# Sets the indentation size to 2 spaces for JSON files.
+indent_size = 2
+
+########################################################################
+# .NET Code Style Settings for C# and VB
+########################################################################
+
+[*.{cs,vb}]
+# Preference for using "is null" instead of reference equality methods.
+dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
+
+# Preference for simplified boolean expressions.
+dotnet_style_prefer_simplified_boolean_expressions = true:warning
+
+# Preference for simplified string interpolation.
+dotnet_style_prefer_simplified_interpolation = true:suggestion
+
+# Suggests that immutable fields be marked as readonly.
+dotnet_style_readonly_field = true:warning
+
+# Requires all members to explicitly declare their access modifiers.
+dotnet_style_require_accessibility_modifiers = always:error
+
+# Sorts "using" directives so that System namespaces appear first.
+dotnet_sort_system_directives_first = true
+
+# Separates "using" directives into groups (with blank lines between groups).
+dotnet_separate_import_directive_groups = true
+
+# Does not recommend qualifying with "this." or "Me." when it is not necessary.
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# Preference for using auto-properties.
+dotnet_style_prefer_auto_properties = true:suggestion
+
+# Preference for using a conditional expression instead of an if/else block with return.
+# Example: "return condition ? value1 : value2;" instead of an if/else block.
+dotnet_style_prefer_conditional_expression_over_return = true
+
+# Suggests using inferred tuple element names.
+# Example: "var tuple = (Name, Age);" instead of "(Name: Name, Age: Age)".
+dotnet_style_prefer_inferred_tuple_names = true:suggestion
+
+# Prefers using predefined types (such as int) for variables, parameters, and members.
+# Example: "int i = 0;" instead of "Int32 i = 0;".
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+
+# Prefers using predefined types when accessing members.
+# Example: "list.Count" instead of "list.Count()".
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# Discourages the use of object initializers.
+dotnet_style_object_initializer = false:suggestion
+
+# Encourages the use of collection initializers.
+# Example: "var list = new List<int> { 1, 2, 3 };" to add elements upon creation.
+dotnet_style_collection_initializer = true:suggestion
+
+# Encourages the use of the null-coalescing operator (??).
+# Example: "var name = input ?? "default";" instead of using an if/else for assignment.
+dotnet_style_coalesce_expression = true:suggestion
+
+# Encourages the use of null propagation (?.).
+# Example: "var length = person?.Name?.Length;" instead of checking each value separately.
+dotnet_style_null_propagation = true:suggestion
+
+# Suggests that tuple element names be declared explicitly.
+# Example: "(first: "John", last: "Doe")" for clarity of the elements.
+dotnet_style_explicit_tuple_names = true:error
+
+########################################################################
+# Naming Conventions
+########################################################################
+
+# Rule for private and internal fields: they should use _camelCase.
+# Example: "private int _age;" instead of "private int age;".
+dotnet_naming_rule.camel_case_for_private_internal_fields.severity = error
+dotnet_naming_rule.camel_case_for_private_internal_fields.symbols = private_internal_fields
+dotnet_naming_rule.camel_case_for_private_internal_fields.style = camel_case_underscore_style
+
+# Specifies that this rule applies to fields.
+dotnet_naming_symbols.private_internal_fields.applicable_kinds = field
+# Applies only to fields with private or internal accessibility.
+dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = private, internal
+
+# Defines the style with an obligatory underscore prefix and camelCase.
+dotnet_naming_style.camel_case_underscore_style.required_prefix = _
+dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
+
+# Rule for constant fields: they should be written in UPPERCASE.
+# Example: "const int MAX_VALUE = 100;" instead of "const int maxValue = 100;".
+dotnet_naming_rule.constant_fields_should_be_upper_case.severity = error
+dotnet_naming_rule.constant_fields_should_be_upper_case.symbols = constant_fields
+dotnet_naming_rule.constant_fields_should_be_upper_case.style = upper_case_style
+
+# Specifies that this rule applies to constant fields.
+dotnet_naming_symbols.constant_fields.applicable_kinds = field, local
+# Applies only to fields marked as "const".
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+# Defines that the style requires all letters to be uppercase.
+dotnet_naming_style.upper_case_style.capitalization = all_upper
+
+########################################################################
+# C# Specific Settings
+########################################################################
+
+[*.cs]
+# Preference for using "var" for built-in types.
+# Example: "var i = 5;" instead of "int i = 5;".
+csharp_style_var_for_built_in_types = true:suggestion
+
+# Preference for using "var" when the type is apparent from the right-hand side.
+# Example: "var person = new Person();" instead of "Person person = new Person();".
+csharp_style_var_when_type_is_apparent = true:suggestion
+
+# Preference for using "var" in other cases.
+# Example: "var data = GetData();" instead of "DataType data = GetData();".
+csharp_style_var_elsewhere = true:suggestion
+
+# For methods, constructors, and operators, do not use expression-bodied bodies for greater clarity.
+# Example: Always use blocks with braces even if the method is simple.
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+
+# Allows the use of expression-bodied members for properties, indexers, and accessors for conciseness.
+# Example: "public int Age => _age;".
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+
+# Encourages the use of pattern matching to simplify code.
+# Example: "if (obj is int i)" instead of manually checking and casting.
+csharp_style_pattern_matching_over_is_with_cast_check = true:warning
+
+# Encourages the use of pattern matching to handle "as" results with null checking.
+# Example: "if (obj is string s)" instead of "var s = obj as string; if (s != null)".
+csharp_style_pattern_matching_over_as_with_null_check = true:warning
+
+# Suggests inline variable declaration.
+# Example: "if (int.TryParse(s, out var number))" instead of declaring the variable beforehand.
+csharp_style_inlined_variable_declaration = true:suggestion
+
+# Suggests the use of throw expressions for conditional assignment.
+# Example: "var result = value ?? throw new ArgumentNullException(nameof(value));".
+csharp_style_throw_expression = true:suggestion
+
+# Suggests the use of conditional delegate invocation.
+# Example: "action?.Invoke();" instead of "if (action != null) action();".
+csharp_style_conditional_delegate_call = true:error
+
+# Encourages the use of simplified using statements, without the need for a block if no additional scope is required.
+# Example: "using var resource = new Resource();" instead of "using(var resource = new Resource()) { ... }".
+csharp_style_prefer_simple_using_statement = true:suggestion
+
+# Sets the preferred order of modifiers to ensure consistency.
+# Example: "public static void Method()" instead of "static public void Method()".
+csharp_preferred_modifier_order = public, protected, internal, private, new, static, extern, virtual, abstract, override, sealed, readonly, unsafe, volatile, async:suggestion
+
+# Specifies that the opening brace should appear on a new line.
+# Example:
+# if (condition)
+# {
+#     // ...
+# }
+csharp_new_line_before_open_brace = all
+
+# Ensures that "else" starts on a new line.
+# Example:
+# }
+# else
+# {
+#     // ...
+# }
+csharp_new_line_before_else = true
+
+# Ensures that "catch" starts on a new line.
+# Example:
+# try { }
+# catch (Exception e)
+# {
+# }
+csharp_new_line_before_catch = true
+
+# Ensures that "finally" starts on a new line.
+# Example:
+# try { }
+# finally
+# {
+# }
+csharp_new_line_before_finally = true
+
+# In object initializers, each member should start on a new line.
+# Example:
+# new Person
+# {
+#     Name = "John",
+#     Age = 30
+# };
+csharp_new_line_before_members_in_object_initializers = true
+
+# In anonymous types, each property should start on a new line.
+# Example:
+# var anon = new
+# {
+#     Name = "John",
+#     Age = 30
+# };
+csharp_new_line_before_members_in_anonymous_types = true
+
+########################################################################
+# ReSharper
+########################################################################
+
+# Preserves the current arrangement of attributes (does not automatically reorder them).
+# Example: The order of attributes in the code remains unchanged.
+resharper_csharp_keep_existing_attribute_arrangement = true
+
+# Requires the use of braces in if/else structures.
+# Example: Even for a single line, you must use:
+# if (condition)
+# {
+#     // ...
+# }
+# else
+# {
+#     // ...
+# }
+resharper_csharp_braces_for_ifelse = required
+
+# Requires the use of braces in foreach loops.
+# Example:
+# foreach (var item in collection)
+# {
+#     // ...
+# }
+resharper_csharp_braces_for_foreach = required
+
+# Requires the use of braces in while loops.
+# Example:
+# while (condition)
+# {
+#     // ...
+# }
+resharper_csharp_braces_for_while = required
+
+# Allows simple anonymous methods to be written on a single line.
+# Example: "delegate { return 42; }" can be written on one line.
+resharper_csharp_place_simple_anonymousmethod_on_single_line = true
+
+# Preserves the current code arrangement (does not automatically reorder code).
+resharper_csharp_keep_existing_arrangement = true
+
+# Specifies that there should be a space before and after binary operators.
+# Example: "a+b" becomes "a + b".
+resharper_csharp_space_around_binary_operators = before_and_after
+
+# Ensures that there is a space after each comma.
+# Example: "Foo(a,b)" becomes "Foo(a, b)".
+resharper_csharp_space_after_comma = true
+
+# Ensures that there is no space before the comma.
+# Example: "Foo(a , b)" becomes "Foo(a, b)".
+resharper_csharp_space_before_comma = false
+
+# Ensures that there is a space after each semicolon.
+# Example: "for(int i=0;i<n;i++)" becomes "for(int i = 0; i < n; i++)".
+resharper_csharp_space_after_semicolon = true
+
+# Ensures that there is no space before the semicolon.
+resharper_csharp_space_before_semicolon = false
+
+# Removes extra spaces inside parentheses.
+# Example: "Method( a, b )" becomes "Method(a, b)".
+resharper_csharp_space_within_parentheses = false
+
+# Specifies that there should be 1 blank line before and after namespace declarations.
+# Example: Provides a clear visual separation between the namespace and the rest of the code.
+resharper_csharp_blank_lines_around_namespace = 1
+
+# Specifies that there should be 1 blank line between members of a class or struct.
+# Example: Ensures there is a blank line between methods to improve readability.
+resharper_csharp_blank_lines_between_type_members = 1
+
+########################################################################
+# Nullability Treatment
+########################################################################
+
+dotnet_diagnostic.CS8073.severity = error
+dotnet_diagnostic.CS8597.severity = error
+dotnet_diagnostic.CS8600.severity = error
+dotnet_diagnostic.CS8601.severity = error
+dotnet_diagnostic.CS8602.severity = error
+dotnet_diagnostic.CS8603.severity = error
+dotnet_diagnostic.CS8604.severity = error
+dotnet_diagnostic.CS8605.severity = error
+dotnet_diagnostic.CS8606.severity = error
+dotnet_diagnostic.CS8607.severity = error
+dotnet_diagnostic.CS8608.severity = error
+dotnet_diagnostic.CS8609.severity = error
+dotnet_diagnostic.CS8610.severity = error
+dotnet_diagnostic.CS8611.severity = error
+dotnet_diagnostic.CS8612.severity = error
+dotnet_diagnostic.CS8613.severity = error
+dotnet_diagnostic.CS8614.severity = error
+dotnet_diagnostic.CS8615.severity = error
+dotnet_diagnostic.CS8616.severity = error
+dotnet_diagnostic.CS8617.severity = error
+dotnet_diagnostic.CS8618.severity = error
+dotnet_diagnostic.CS8619.severity = error
+dotnet_diagnostic.CS8620.severity = error
+dotnet_diagnostic.CS8621.severity = error
+dotnet_diagnostic.CS8622.severity = error
+dotnet_diagnostic.CS8624.severity = error
+dotnet_diagnostic.CS8625.severity = error
+dotnet_diagnostic.CS8626.severity = error
+dotnet_diagnostic.CS8629.severity = error
+dotnet_diagnostic.CS8631.severity = error
+dotnet_diagnostic.CS8632.severity = error
+dotnet_diagnostic.CS8633.severity = error
+dotnet_diagnostic.CS8634.severity = error
+dotnet_diagnostic.CS8638.severity = error
+dotnet_diagnostic.CS8643.severity = error
+dotnet_diagnostic.CS8644.severity = error
+dotnet_diagnostic.CS8645.severity = error
+dotnet_diagnostic.CS8653.severity = error
+dotnet_diagnostic.CS8654.severity = error
+dotnet_diagnostic.CS8655.severity = error
+dotnet_diagnostic.CS8667.severity = error
+dotnet_diagnostic.CS8714.severity = error
