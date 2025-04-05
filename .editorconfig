@@ -180,7 +180,7 @@ csharp_style_expression_bodied_operators = false:silent
 # Example: "public int Age => _age;".
 csharp_style_expression_bodied_properties = true:silent
 csharp_style_expression_bodied_indexers = true:silent
-csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_accessors = false:silent
 
 # Encourages the use of pattern matching to simplify code.
 # Example: "if (obj is int i)" instead of manually checking and casting.
