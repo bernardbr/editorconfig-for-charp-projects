@@ -68,7 +68,7 @@ dotnet_style_prefer_simplified_interpolation = true:suggestion
 dotnet_style_readonly_field = true:warning
 
 # Requires all members to explicitly declare their access modifiers.
-dotnet_style_require_accessibility_modifiers = always:error
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:error
 
 # Sorts "using" directives so that System namespaces appear first.
 dotnet_sort_system_directives_first = true
